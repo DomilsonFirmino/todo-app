@@ -4,6 +4,7 @@ import { data } from './staticdata'
 
 function App() {
   const [Todos, setTodos] = useState<TodoType[]>(data)
+  const [filter, setFilter] = useState<"active" | "completed" | "">("")
   const [description, setDescription] = useState("")
 
   const id = Todos.length + 1; 
@@ -33,6 +34,10 @@ function App() {
     )
   }
 
+  function handleResetFilters(){
+    setFilter("")
+  }
+
   return (
     <div style={{display: 'grid', placeContent: 'center'}}>
       <div>
@@ -41,7 +46,7 @@ function App() {
           <button type="submit">enviar</button>
         </form>
       </div>
-      {Todos.map((Todo) => (
+      {Todos.filter(Todo=>Todo.status.includes(filter)).map((Todo) => (
         <div key={Todo.id}>
           <p>{Todo.description}</p>
           <button onClick={()=>handleCheckTodo(Todo.id)}>
@@ -50,6 +55,11 @@ function App() {
           <button onClick={()=>handleDeleteTodo(Todo.id)}>Delete Todo</button>
         </div>
       ))}
+      <div>
+        <button onClick={()=>setFilter("active")}>active</button>
+        <button onClick={()=>setFilter("completed")}>completed</button>
+        <button onClick={handleResetFilters}>ResetFilters</button>
+      </div>
     </div>
   )
 }
