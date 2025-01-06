@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react'
 import { TodoType } from './types'
-import { data } from './staticdata'
+import { useTodoContext } from './contexts/TodoContextProvider'
 
 function App() {
-  const [Todos, setTodos] = useState<TodoType[]>(data)
+  const {Todos, setTodos} = useTodoContext()
   const [filter, setFilter] = useState<"active" | "completed" | "">("")
   const [description, setDescription] = useState("")
 
