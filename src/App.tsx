@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { TodoType } from './types'
-import { useTodoContext } from './contexts/TodoContextProvider'
+import { useTodoContext } from './customHooks/useTodoContext'
 
 function App() {
   const {Todos, setTodos} = useTodoContext()
@@ -8,6 +8,7 @@ function App() {
   const [description, setDescription] = useState("")
 
   const id = Todos.length + 1; 
+
   function handleSubmitTodo(e: FormEvent<HTMLFormElement>){
     e.preventDefault()
     if(description.length < 1)
@@ -17,9 +18,6 @@ function App() {
     setDescription("")
   }
 
-  function handleDeleteTodo(id: number){
-    setTodos(Todos.filter((Todo)=>Todo.id != id))
-  }
 
   function handleCheckTodo(id: number){
     setTodos(
@@ -36,6 +34,14 @@ function App() {
 
   function handleResetFilters(){
     setFilter("")
+  }
+
+  function handleDeleteTodo(id: number){
+    setTodos(Todos.filter((Todo)=>Todo.id != id))
+  } 
+
+  function handleMultipleDelete(){
+    setTodos(Todos.filter((Todo)=>Todo.status != "completed"))
   }
 
   return (
@@ -56,9 +62,10 @@ function App() {
         </div>
       ))}
       <div>
-        <button onClick={()=>setFilter("active")}>active</button>
-        <button onClick={()=>setFilter("completed")}>completed</button>
-        <button onClick={handleResetFilters}>ResetFilters</button>
+        <button onClick={handleResetFilters}>All</button>
+        <button onClick={()=>setFilter("active")}>Active</button>
+        <button onClick={()=>setFilter("completed")}>Completed</button>
+        <button onClick={handleMultipleDelete}>Clear completed</button>
       </div>
     </div>
   )
