@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react"
 import { data } from "../staticdata"
-import { TodoType } from "../types"
+import { TodoType } from "../@types/types"
 import { TodoContext } from './TodoContext'
 
 export default function TodoContextProvider({children}:{children: ReactNode}) {

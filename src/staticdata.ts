@@ -1,4 +1,4 @@
-import { TodoType } from "./types";
+import { TodoType } from "./@types/types";
 
 export const data:TodoType[] = [
     {

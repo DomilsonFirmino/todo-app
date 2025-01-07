@@ -1,11 +1,21 @@
 import { FormEvent, useState } from 'react'
-import { TodoType } from './types'
+import { FilterType, TodoType } from './@types/types'
 import { useTodoContext } from './customHooks/useTodoContext'
+import Form from './components/form/Form'
+import InputComponent from './components/form/InputComponent'
+import useThemContext from './customHooks/useThemContext'
+import TodoComponent from './components/TodoComponent'
+import Button from './components/Button'
 
 function App() {
   const {Todos, setTodos} = useTodoContext()
-  const [filter, setFilter] = useState<"active" | "completed" | "">("")
+  const {theme, handleChangeTheme} = useThemContext()
+  const [filter, setFilter] = useState<FilterType>("")
   const [description, setDescription] = useState("")
+
+  const activeTodos = Todos.filter(Todo => Todo.status == "active").length
+  const completedTodos = Todos.filter(Todo => Todo.status == "completed").length
+  console.log(completedTodos)
 
   const id = Todos.length + 1; 
 
@@ -17,7 +27,6 @@ function App() {
     setTodos([newTodo, ...Todos])
     setDescription("")
   }
-
 
   function handleCheckTodo(id: number){
     setTodos(
@@ -45,27 +54,38 @@ function App() {
   }
 
   return (
-    <div style={{display: 'grid', placeContent: 'center'}}>
-      <div>
-        <form onSubmit={(e)=>handleSubmitTodo(e)}>
-          <input onChange={(e)=>setDescription(e.target.value)} value={description} type="text"/>
-          <button type="submit">enviar</button>
-        </form>
+    <div className='min-w-[30rem]'>
+      <div className='flex justify-between'>
+        <h1 className='text-3xl font-bold uppercase tracking-[0.2em]'>Todo</h1>
+        <button onClick={handleChangeTheme}>{theme}</button>
       </div>
-      {Todos.filter(Todo=>Todo.status.includes(filter)).map((Todo) => (
-        <div key={Todo.id}>
-          <p>{Todo.description}</p>
-          <button onClick={()=>handleCheckTodo(Todo.id)}>
-            {Todo.status=="active" ? "Ativo": "completo"}
-          </button>
-          <button onClick={()=>handleDeleteTodo(Todo.id)}>Delete Todo</button>
+      <div className='mt-2'>
+        <Form handleSubmit={(e)=>handleSubmitTodo(e)} >
+          <InputComponent name='search' id='search' state={description} handleChange={(e) => setDescription(e.target.value)} />
+        </Form>
+      </div>
+
+      <div className='mt-6 bg-gray-900 rounded-md overflow-hidden'>
+        <div>
+          {Todos.filter(Todo=>Todo.status.includes(filter)).map((Todo) => (
+            <TodoComponent handleDelete={()=>handleDeleteTodo(Todo.id)} Todo={Todo} handleCheck={()=>handleCheckTodo(Todo.id)}  />
+          ))}
         </div>
-      ))}
-      <div>
-        <button onClick={handleResetFilters}>All</button>
-        <button onClick={()=>setFilter("active")}>Active</button>
-        <button onClick={()=>setFilter("completed")}>Completed</button>
-        <button onClick={handleMultipleDelete}>Clear completed</button>
+        <div className='flex  justify-between p-4 border-t border-t-gray-700'>
+          
+          {activeTodos == 0 ? <p className='text-gray-300'> no items </p> : <p className='text-gray-300'>{activeTodos} items left</p>}
+          
+          <Button handleClick={handleResetFilters}>
+            {filter == "" ? <p className='text-blue-700'>All</p> : <p>All</p>}
+          </Button>
+          <Button handleClick={()=>setFilter("active")}>
+            {filter == "active" ? <p className='text-blue-700'>Active</p> : <p>Active</p>}
+          </Button>
+          <Button handleClick={()=>setFilter("completed")}>
+          {filter == "completed" ? <p className='text-blue-700'>Completed</p> : <p>Completed</p>}
+          </Button>
+          <Button disabled={(completedTodos < 1)} handleClick={handleMultipleDelete}>Clear completed</Button>
+        </div>
       </div>
     </div>
   )
