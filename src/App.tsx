@@ -15,7 +15,6 @@ function App() {
 
   const activeTodos = Todos.filter(Todo => Todo.status == "active").length
   const completedTodos = Todos.filter(Todo => Todo.status == "completed").length
-  console.log(completedTodos)
 
   const id = Todos.length + 1; 
 
@@ -39,6 +38,7 @@ function App() {
         }
       })
     )
+    localStorage.setItem("Todos",JSON.stringify(Todos))
   }
 
   function handleResetFilters(){
@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div className='min-w-[30rem]'>
+    <div className='w-[calc(100%-2rem)] md:min-w-[30rem] mx-auto mt-5 md:mt-0'>
       <div className='flex justify-between'>
         <h1 className='text-3xl font-bold uppercase tracking-[0.2em]'>Todo</h1>
         <button onClick={handleChangeTheme}>{theme}</button>
@@ -68,10 +68,10 @@ function App() {
       <div className='mt-6 bg-gray-900 rounded-md overflow-hidden'>
         <div>
           {Todos.filter(Todo=>Todo.status.includes(filter)).map((Todo) => (
-            <TodoComponent handleDelete={()=>handleDeleteTodo(Todo.id)} Todo={Todo} handleCheck={()=>handleCheckTodo(Todo.id)}  />
+            <TodoComponent key={Todo.id} handleDelete={()=>handleDeleteTodo(Todo.id)} Todo={Todo} handleCheck={()=>handleCheckTodo(Todo.id)}  />
           ))}
         </div>
-        <div className='flex  justify-between p-4 border-t border-t-gray-700'>
+        <div className='flex gap-4 md:gap-0 justify-between p-4 border-t border-t-gray-700 flex-wrap'>
           
           {activeTodos == 0 ? <p className='text-gray-300'> no items </p> : <p className='text-gray-300'>{activeTodos} items left</p>}
           

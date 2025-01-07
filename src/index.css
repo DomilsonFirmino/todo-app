@@ -7,7 +7,7 @@ html, body{
 }
 
 #root{
-  @apply h-full grid md:place-content-center bg-gray-800;
+  @apply min-h-full grid md:place-content-center bg-gray-800 pb-6;
 }
 
 @layer components{
