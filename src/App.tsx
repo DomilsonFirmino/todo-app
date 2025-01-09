@@ -22,7 +22,7 @@ function App() {
   const id = Todos.length + 1; 
 
   return (
-    <div className='box'>
+    <main className='box'>
 
       <div className='sticky top-5'>
         <div className='flex justify-between'>
@@ -90,7 +90,7 @@ function App() {
         </Button>
       </div>
 
-    </div>
+    </main>
   )
 }
 
