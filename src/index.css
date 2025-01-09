@@ -7,11 +7,18 @@ html, body{
 }
 
 #root{
-  @apply min-h-full grid md:place-content-center bg-gray-800 pb-6;
+  @apply min-h-full grid sm:justify-center pb-6;
+}
+
+#root{
+  @apply bg-gray-800 dark:bg-gray-200 bg-[url('assets/images/bg-mobile-dark.jpg')] dark:bg-[url('assets/images/bg-mobile-light.jpg')] sm:bg-[url('assets/images/bg-desktop-dark.jpg')] sm:dark:bg-[url('assets/images/bg-desktop-light.jpg')]  bg-no-repeat bg-[length:100%_30%] sm:bg-[length:100%_38%];
 }
 
 @layer components{
   .Todo:not(:first-child) {
     @apply border-t border-t-gray-700;  
+  }
+  .box{
+    @apply w-[calc(100%-2rem)] md:min-w-[35rem] mx-auto py-5 mt-5 sm:mt-20;
   }
 }
