@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# Frontend Mentor - Todo App Solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Todo App challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-QM81RHtwJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### The challenge
 
-- Configure the top-level `parserOptions` property like this:
+Users should be able to:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- View the optimal layout for the app depending on their device's screen size.
+- Add, edit, and remove tasks.
+- Mark tasks as complete or incomplete.
+- Filter tasks by all, active, or completed states.
+- Clear all completed tasks.
+- Persist task data using local storage.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Screenshot
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![](./screenshot.jpg)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Add a screenshot of your solution. Use a browser's screenshot tool or an extension like [FireShot](https://getfireshot.com/) to capture the app. Optimize and crop the image before replacing this placeholder.
+
+### Links
+
+- Solution URL: [GitHub Repository](https://github.com/DomilsonFirmino/todo-app)
+- Live Site URL: [Live Demo](https://domilsonfirmino.github.io/todo-app/)
+
+## My process
+
+### Built with
+
+- [React](https://reactjs.org/) - JS library
+- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
+- Context API - State management
+
+### What I learned
+
+- Understanding of React Context API for state management.
+- TypeScript skills for strongly typed React components.
+- Responsive design using TailwindCSS.
+
+### Continued development
+
+I aim to improve this project by:
+
+- Integrate unit tests using Jest and React Testing Library.
+- Explore server-side data persistence with a backend API.
+
+### Useful resources
+
+- [React Docs](https://reactjs.org/docs/getting-started.html) - Helped solidify my React knowledge.
+- [TailwindCSS Documentation](https://tailwindcss.com/docs) - Provided clear guidance on styling responsive designs.
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) - Enhanced my TypeScript understanding.
+
+## Author
+
+- Frontend Mentor - [@DomilsonFirmino](https://www.frontendmentor.io/profile/DomilsonFirmino)
+- GitHub - [DomilsonFirmino](https://github.com/DomilsonFirmino)
+- LinkedIn - [Domilson Firmino](https://www.linkedin.com/in/domilson-firmino)
+
+
