@@ -7,7 +7,7 @@ export default function IconCheck({fill="#FFF",width=11,strokeWidth=2}:{fill?:st
         <path 
             fill="none" 
             stroke={fill}
-            stroke-width={strokeWidth}
+            strokeWidth={strokeWidth}
             d="M1 4.304L3.696 7l6-6"/>
     </svg>
   )

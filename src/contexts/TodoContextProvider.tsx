@@ -6,7 +6,7 @@ export default function TodoContextProvider({children}:{children: ReactNode}) {
     const [Todos, setTodos] = useState<TodoType[]>(()=>{
         const stored = localStorage.getItem("Todos");
         if(stored)
-            return JSON.parse(stored)
+            return (JSON.parse(stored))
         return []
     })
 
